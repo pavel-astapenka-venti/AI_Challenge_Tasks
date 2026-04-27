@@ -4,6 +4,7 @@ import type { User } from '../types'
 import { getCategories } from '../services/categories'
 import IconStar from './icons/IconStar.vue'
 import IconChevron from './icons/IconChevron.vue'
+import CategoryTooltip from './CategoryTooltip.vue'
 
 const categories = getCategories()
 
@@ -46,10 +47,12 @@ const categoryStats = computed(() =>
         </div>
         <div class="row-right">
           <div class="category-stats">
-            <div class="category-stat" v-for="stat in categoryStats" :key="stat.name" :title="stat.name">
-              <component :is="stat.icon" class="category-stat-icon" />
-              <span class="category-stat-count">{{ stat.count }}</span>
-            </div>
+            <CategoryTooltip v-for="stat in categoryStats" :key="stat.name" :label="stat.name">
+              <div class="category-stat">
+                <component :is="stat.icon" class="category-stat-icon" />
+                <span class="category-stat-count">{{ stat.count }}</span>
+              </div>
+            </CategoryTooltip>
           </div>
           <div class="total-section">
             <span class="total-label">TOTAL</span>
@@ -97,7 +100,6 @@ const categoryStats = computed(() =>
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
   transition: all 0.2s;
 }
 
