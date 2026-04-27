@@ -1,12 +1,10 @@
 <template>
-  <svg :width="size" :height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-    <line x1="9" y1="9" x2="9.01" y2="9" />
-    <line x1="15" y1="9" x2="15.01" y2="9" />
+  <svg :width="size" :height="size" viewBox="0 0 2048 2048" fill="currentColor">
+    <path
+      d="M640 896q-27 0-50-10t-40-27t-28-41t-10-50q0-27 10-50t27-40t41-28t50-10q27 0 50 10t40 27t28 41t10 50q0 27-10 50t-27 40t-41 28t-50 10m768 0q-27 0-50-10t-40-27t-28-41t-10-50q0-27 10-50t27-40t41-28t50-10q27 0 50 10t40 27t28 41t10 50q0 27-10 50t-27 40t-41 28t-50 10M1024 0q141 0 272 36t245 103t207 160t160 208t103 245t37 272q0 141-36 272t-103 245t-160 207t-208 160t-245 103t-272 37q-141 0-272-36t-245-103t-207-160t-160-208t-103-244t-37-273q0-141 36-272t103-245t160-207t208-160T751 37t273-37m0 1920q123 0 237-32t214-90t182-141t140-181t91-214t32-238q0-123-32-237t-90-214t-141-182t-181-140t-214-91t-238-32q-123 0-237 32t-214 90t-182 141t-140 181t-91 214t-32 238q0 123 32 237t90 214t141 182t181 140t214 91t238 32m0-384q73 0 141-20t128-57t106-90t81-118l115 58q-41 81-101 147t-134 112t-159 71t-177 25t-177-25t-159-71t-134-112t-101-147l115-58q33 65 80 118t107 90t127 57t142 20" />
   </svg>
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ size?: number }>(), { size: 18 })
+withDefaults(defineProps<{ size?: number }>(), { size: 20 })
 </script>

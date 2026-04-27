@@ -30,223 +30,310 @@ const categoryStats = computed(() =>
 </script>
 
 <template>
-  <div class="user-row" :class="{ expanded }">
-    <div class="user-summary" @click="expanded = !expanded">
-      <span class="rank">{{ rank }}</span>
-      <img class="avatar" :src="user.avatarUrl" :alt="user.name" />
-      <div class="user-info">
-        <span class="user-name">{{ user.name }}</span>
-        <span class="user-title">{{ user.title }} ({{ user.unit }})</span>
-      </div>
-      <div class="stats">
-        <div class="stat" v-for="stat in categoryStats" :key="stat.name">
-          <component :is="stat.icon" />
-          <span>{{ stat.count }}</span>
+  <div class="user-row-container" :class="{ expanded }">
+    <div class="row">
+      <div class="row-main">
+        <div class="row-left">
+          <span class="rank">{{ rank }}</span>
+          <div
+            class="avatar"
+            :style="{ backgroundImage: `url(${user.avatarUrl})` }"
+          ></div>
+          <div class="info">
+            <h3 class="user-name">{{ user.name }}</h3>
+            <span class="user-role">{{ user.title }} ({{ user.unit }})</span>
+          </div>
+        </div>
+        <div class="row-right">
+          <div class="category-stats">
+            <div class="category-stat" v-for="stat in categoryStats" :key="stat.name" :title="stat.name">
+              <component :is="stat.icon" class="category-stat-icon" />
+              <span class="category-stat-count">{{ stat.count }}</span>
+            </div>
+          </div>
+          <div class="total-section">
+            <span class="total-label">TOTAL</span>
+            <div class="score">
+              <IconStar class="star-icon" />
+              <span>{{ totalScore }}</span>
+            </div>
+          </div>
+          <button class="expand-button" :aria-label="expanded ? 'Collapse' : 'Expand'" @click="expanded = !expanded">
+            <IconChevron :class="{ rotated: expanded }" />
+          </button>
         </div>
       </div>
-      <div class="score-section">
-        <span class="score-label">TOTAL</span>
-        <span class="score">
-          <IconStar class="star-icon" />
-          {{ totalScore }}
-        </span>
-      </div>
-      <button class="expand-btn" :class="{ rotated: expanded }">
-        <IconChevron />
-      </button>
     </div>
 
-    <div v-if="expanded" class="user-details">
+    <div v-if="expanded" class="details">
       <h4 class="details-title">RECENT ACTIVITY</h4>
-      <table class="activity-table">
-        <thead>
-          <tr>
-            <th>ACTIVITY</th>
-            <th>CATEGORY</th>
-            <th>DATE</th>
-            <th>POINTS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(activity, index) in user.activities" :key="index">
-            <td>{{ activity.title }}</td>
-            <td><span class="category-badge">{{ activity.category }}</span></td>
-            <td>{{ activity.date }}</td>
-            <td class="points-cell">+{{ activity.points }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="activity-table">
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(activity, index) in user.activities" :key="index">
+              <td class="activity-name">{{ activity.title }}</td>
+              <td><span class="category-badge">{{ activity.category }}</span></td>
+              <td class="activity-date">{{ activity.date }}</td>
+              <td class="activity-points">+{{ activity.points }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.user-row {
-  background: var(--color-surface);
+.user-row-container {
+  background: #fff;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: box-shadow 0.2s;
+  transition: all 0.2s;
 }
 
-.user-row.expanded {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), var(--shadow);
+.user-row-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.user-summary {
+.user-row-container.expanded {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  padding: 20px 24px;
+}
+
+.row-main {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  user-select: none;
+  gap: 16px;
+  justify-content: space-between;
 }
 
-.user-summary:hover {
-  background: #f9fafb;
+.row-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 24px;
 }
 
 .rank {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  min-width: 1.5rem;
+  font-size: 24px;
+  font-weight: 700;
+  color: #94a3b8;
+  min-width: 32px;
   text-align: center;
 }
 
 .avatar {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-color: #fbbf24;
   flex-shrink: 0;
 }
 
-.user-info {
+.info {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 4px;
   min-width: 0;
 }
 
 .user-name {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: var(--color-text-primary);
+  margin: 0;
 }
 
-.user-title {
-  font-size: 0.8125rem;
+.user-role {
+  font-size: 14px;
   color: var(--color-text-secondary);
 }
 
-.stats {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.stat {
+.row-right {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+  gap: 24px;
 }
 
-.score-section {
+.category-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.category-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.category-stat-icon {
+  color: var(--color-accent);
+  font-size: 20px;
+}
+
+.category-stat-count {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.total-section {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  min-width: 5rem;
+  gap: 4px;
+  border-left: 1px solid var(--color-border);
+  padding-left: 24px;
 }
 
-.score-label {
-  font-size: 0.625rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
+.total-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #94a3b8;
   letter-spacing: 0.05em;
 }
 
 .score {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 1.25rem;
+  gap: 6px;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--color-star);
+  color: var(--color-accent);
 }
 
 .star-icon {
+  color: inherit;
   flex-shrink: 0;
 }
 
-.expand-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-text-secondary);
-  padding: 0.25rem;
+.expand-button {
   display: flex;
   align-items: center;
-  transition: transform 0.2s;
+  justify-content: center;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 8px;
+  transition: background 0.2s;
 }
 
-.expand-btn.rotated {
+.expand-button:hover {
+  background: #e2e8f0;
+}
+
+.user-row-container.expanded .expand-button {
+  background: #e0f2fe;
+}
+
+.expand-button .rotated {
   transform: rotate(180deg);
 }
 
-.user-details {
-  padding: 0 1.5rem 1.5rem;
+.details {
+  background: #f8fafc;
   border-top: 1px solid var(--color-border);
+  padding: 24px;
 }
 
 .details-title {
-  font-size: 0.75rem;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 1rem 0 0.75rem;
+  margin: 0 0 16px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
 }
 
 .activity-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8125rem;
 }
 
-.activity-table th {
+.activity-table thead tr {
+  border-bottom: 2px solid var(--color-border);
+}
+
+.activity-table thead th {
   text-align: left;
-  font-size: 0.6875rem;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 12px 8px;
 }
 
-.activity-table td {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-primary);
+.activity-table thead th:last-child {
+  text-align: right;
 }
 
-.activity-table tr:last-child td {
+.activity-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.activity-table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+.activity-table tbody td {
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.activity-table tbody tr:last-child td {
   border-bottom: none;
 }
 
+.activity-name {
+  color: #1e293b;
+  font-weight: 600;
+}
+
 .category-badge {
-  display: inline-block;
-  padding: 0.2rem 0.75rem;
-  background: #f0f4f8;
-  border-radius: 999px;
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.activity-date {
   color: var(--color-text-secondary);
 }
 
-.points-cell {
-  font-weight: 600;
+.activity-points {
   color: var(--color-accent);
+  font-weight: 700;
+  text-align: right;
 }
 </style>

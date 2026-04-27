@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { User } from '../types'
+import type { RankedUser } from '../types'
 import LeaderboardUserRow from './LeaderboardUserRow.vue'
 
 const props = defineProps<{
-  users: User[]
+  users: RankedUser[]
 }>()
 </script>
 
 <template>
   <div class="list-section">
     <LeaderboardUserRow
-      v-for="(user, index) in users"
+      v-for="user in users"
       :key="user.id"
       :user="user"
-      :rank="index + 1"
+      :rank="user.rank"
     />
   </div>
 </template>
@@ -22,6 +22,6 @@ const props = defineProps<{
 .list-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 16px;
 }
 </style>

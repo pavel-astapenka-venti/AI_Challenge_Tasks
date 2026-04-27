@@ -1,24 +1,34 @@
 <template>
-  <div class="leaderboard-header">
-    <h1>Leaderboard</h1>
-    <p class="subtitle">Top performers based on contributions and activity</p>
-  </div>
+  <header class="leaderboard-header">
+    <div class="header-content">
+      <h2>Leaderboard</h2>
+      <p class="subtitle">Top performers based on contributions and activity</p>
+    </div>
+  </header>
 </template>
 
 <style scoped>
 .leaderboard-header {
-  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
 }
 
-.leaderboard-header h1 {
-  font-size: 1.75rem;
+.header-content {
+  flex: 1;
+}
+
+.header-content h2 {
+  font-size: 30px;
   font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: 0.25rem;
+  margin: 0 0 8px;
 }
 
 .subtitle {
-  font-size: 0.875rem;
-  color: var(--color-accent);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
 }
 </style>

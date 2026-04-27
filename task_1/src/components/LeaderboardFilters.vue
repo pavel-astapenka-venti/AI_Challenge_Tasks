@@ -2,7 +2,8 @@
 import { ref, watch } from 'vue'
 import { getCategories } from '../services/categories'
 import { getActivityYears, type LeaderboardFilters } from '../services/leaderboard'
-import IconSearch from './icons/IconSearch.vue'
+import FilterSelect from './FilterSelect.vue'
+import SearchInput from './SearchInput.vue'
 
 const emit = defineEmits<{
   (e: 'update:filters', filters: LeaderboardFilters): void
@@ -32,91 +33,36 @@ watch([selectedYear, selectedQuarter, selectedCategory, searchQuery], emitFilter
 <template>
   <div class="filters">
     <div class="filter-dropdowns">
-      <select v-model="selectedYear" class="filter-select">
-        <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
-      </select>
-      <select v-model="selectedQuarter" class="filter-select">
-        <option v-for="q in quarters" :key="q" :value="q">{{ q }}</option>
-      </select>
-      <select v-model="selectedCategory" class="filter-select">
-        <option v-for="cat in categoryNames" :key="cat" :value="cat">{{ cat }}</option>
-      </select>
+      <FilterSelect v-model="selectedYear" :options="years" size="sm" />
+      <FilterSelect v-model="selectedQuarter" :options="quarters" size="sm" />
+      <FilterSelect v-model="selectedCategory" :options="categoryNames" size="md" />
     </div>
-    <div class="search-wrapper">
-      <IconSearch class="search-icon" />
-      <input
-        v-model="searchQuery"
-        type="text"
-        class="search-input"
-        placeholder="Search employee..."
-      />
-    </div>
+    <SearchInput v-model="searchQuery" placeholder="Search employee..." />
   </div>
 </template>
 
 <style scoped>
 .filters {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  background: var(--color-surface);
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+}
+
+.filters:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .filter-dropdowns {
   display: flex;
-  gap: 0.5rem;
-}
-
-.filter-select {
-  padding: 0.5rem 2rem 0.5rem 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  font-size: 0.8125rem;
-  cursor: pointer;
-  appearance: auto;
-}
-
-.filter-select:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: -1px;
-}
-
-.search-wrapper {
-  flex: 1;
-  position: relative;
-}
-
-.search-icon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-text-secondary);
-  pointer-events: none;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.8125rem;
-  color: var(--color-text-primary);
-  background: var(--color-surface);
-}
-
-.search-input::placeholder {
-  color: var(--color-text-secondary);
-}
-
-.search-input:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: -1px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 </style>

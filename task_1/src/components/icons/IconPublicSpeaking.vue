@@ -1,11 +1,10 @@
 <template>
-  <svg :width="size" :height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <line x1="8" y1="21" x2="16" y2="21" />
-    <line x1="12" y1="17" x2="12" y2="21" />
+  <svg :width="size" :height="size" viewBox="0 0 2048 2048">
+    <path fill="currentColor"
+      d="M0 0h1920v128h-128v896q0 26-10 49t-27 41t-41 28t-50 10h-640v640h512v128H384v-128h512v-640H256q-26 0-49-10t-41-27t-28-41t-10-50V128H0V0zm1664 1024V128H256v896h1408zm-256-512v128H512V512h896z" />
   </svg>
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ size?: number }>(), { size: 18 })
+withDefaults(defineProps<{ size?: number }>(), { size: 20 })
 </script>

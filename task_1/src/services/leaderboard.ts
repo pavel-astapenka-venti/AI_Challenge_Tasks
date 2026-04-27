@@ -42,7 +42,6 @@ const users: User[] = [
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10002.jpg',
     activities: [
       { title: '[LAB] Mentoring of Pavel Kozlov', category: 'Education', date: '12-Feb-2026', points: 60 },
-      { title: '[UNI] University guest lecture on QA', category: 'University Partnership', date: '01-Dec-2025', points: 35 },
       { title: '[REG] QA Summit regional talk', category: 'Public Speaking', date: '15-Oct-2025', points: 92 },
       { title: '[LAB] Lecturing on test automation', category: 'Education', date: '22-Aug-2025', points: 44 },
     ],
@@ -56,7 +55,6 @@ const users: User[] = [
     activities: [
       { title: '[REG] Leadership conference keynote', category: 'Public Speaking', date: '20-Mar-2026', points: 95 },
       { title: '[LAB] Mentoring of Alina Kovalenko', category: 'Education', date: '14-Jan-2026', points: 58 },
-      { title: '[UNI] University career fair participation', category: 'University Partnership', date: '08-Nov-2025', points: 30 },
       { title: '[LAB] Curating management workshop', category: 'Education', date: '19-Jun-2025', points: 67 },
       { title: '[REG] Internal training on Agile', category: 'Public Speaking', date: '03-Apr-2025', points: 73 },
     ],
@@ -70,7 +68,6 @@ const users: User[] = [
     activities: [
       { title: '[LAB] Mentoring of Ivan Sokolov', category: 'Education', date: '22-Feb-2026', points: 51 },
       { title: '[UNI] Academic practice supervision', category: 'University Partnership', date: '10-Dec-2025', points: 28 },
-      { title: '[REG] Frontend meetup talk', category: 'Public Speaking', date: '05-Oct-2025', points: 80 },
     ],
   },
   {
@@ -82,10 +79,8 @@ const users: User[] = [
     activities: [
       { title: '[LAB] Mentoring of Marta Lebedeva', category: 'Education', date: '18-Mar-2026', points: 63 },
       { title: '[LAB] Lecturing on performance testing', category: 'Education', date: '25-Jan-2026', points: 47 },
-      { title: '[UNI] University workshop on testing', category: 'University Partnership', date: '30-Nov-2025', points: 38 },
       { title: '[REG] Regional QA conference talk', category: 'Public Speaking', date: '14-Aug-2025', points: 91 },
       { title: '[LAB] Curating automation lab', category: 'Education', date: '06-May-2025', points: 55 },
-      { title: '[UNI] Guest lecture at technical university', category: 'University Partnership', date: '20-Feb-2025', points: 33 },
     ],
   },
   {
@@ -107,13 +102,10 @@ const users: User[] = [
     unit: 'EQ.U1.G3.T1',
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10007.jpg',
     activities: [
-      { title: '[LAB] Mentoring of Svetlana Morozova', category: 'Education', date: '10-Mar-2026', points: 70 },
       { title: '[UNI] Academic internship mentoring', category: 'University Partnership', date: '22-Jan-2026', points: 42 },
       { title: '[REG] Architecture talk at local meetup', category: 'Public Speaking', date: '18-Oct-2025', points: 77 },
-      { title: '[LAB] Lecturing on microservices', category: 'Education', date: '05-Jul-2025', points: 59 },
       { title: '[REG] Internal training on CI/CD', category: 'Public Speaking', date: '12-Apr-2025', points: 68 },
       { title: '[UNI] University partnership program lead', category: 'University Partnership', date: '28-Jan-2025', points: 36 },
-      { title: '[LAB] Curating code review sessions', category: 'Education', date: '15-Mar-2025', points: 45 },
     ],
   },
   {
@@ -125,7 +117,6 @@ const users: User[] = [
     activities: [
       { title: '[LAB] Mentoring of Yulia Kuznetsova', category: 'Education', date: '05-Mar-2026', points: 54 },
       { title: '[REG] Testing conference presentation', category: 'Public Speaking', date: '18-Dec-2025', points: 89 },
-      { title: '[UNI] Guest lecture on test strategies', category: 'University Partnership', date: '04-Sep-2025', points: 31 },
     ],
   },
   {
@@ -137,7 +128,6 @@ const users: User[] = [
     activities: [
       { title: '[UNI] University guest lecture on APIs', category: 'University Partnership', date: '01-Mar-2026', points: 29 },
       { title: '[LAB] Mentoring of Anna Sidorova', category: 'Education', date: '14-Feb-2026', points: 66 },
-      { title: '[REG] Regional DevOps meetup talk', category: 'Public Speaking', date: '20-Oct-2025', points: 82 },
       { title: '[LAB] Curating Docker workshop', category: 'Education', date: '11-Jul-2025', points: 50 },
     ],
   },
@@ -148,11 +138,9 @@ const users: User[] = [
     unit: 'BG3.U1.G3.T2',
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10010.jpg',
     activities: [
-      { title: '[REG] DevOps meetup talk', category: 'Public Speaking', date: '25-Feb-2026', points: 93 },
       { title: '[LAB] Mentoring of Mikhail Orlov', category: 'Education', date: '20-Dec-2025', points: 57 },
       { title: '[UNI] Academic practice curator', category: 'University Partnership', date: '08-Aug-2025', points: 34 },
       { title: '[LAB] Lecturing on system design', category: 'Education', date: '15-May-2025', points: 62 },
-      { title: '[REG] Internal talk on observability', category: 'Public Speaking', date: '22-Feb-2025', points: 76 },
     ],
   },
   {
@@ -202,7 +190,6 @@ const users: User[] = [
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10014.jpg',
     activities: [
       { title: '[LAB] Mentoring of Viktor Soloviev', category: 'Education', date: '28-Feb-2026', points: 58 },
-      { title: '[UNI] Academic internship supervision', category: 'University Partnership', date: '12-Dec-2025', points: 41 },
       { title: '[REG] QA automation conference talk', category: 'Public Speaking', date: '06-Aug-2025', points: 90 },
       { title: '[LAB] Curating regression testing workshop', category: 'Education', date: '22-May-2025', points: 43 },
     ],
@@ -215,7 +202,6 @@ const users: User[] = [
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10015.jpg',
     activities: [
       { title: '[LAB] Mentoring of Valeryia Dziatsel', category: 'Education', date: '20-Nov-2025', points: 56 },
-      { title: '[UNI] Academic internship mentoring', category: 'University Partnership', date: '17-Jul-2025', points: 32 },
       { title: '[LAB] Mentoring of Lizaveta Yurashevich', category: 'Education', date: '10-May-2025', points: 69 },
       { title: '[REG] Internal talk on Go best practices', category: 'Public Speaking', date: '09-Apr-2025', points: 78 },
       { title: '[LAB] Curating Kubernetes lab', category: 'Education', date: '15-Feb-2025', points: 44 },
@@ -230,7 +216,6 @@ const users: User[] = [
     activities: [
       { title: '[REG] Mobile testing conference talk', category: 'Public Speaking', date: '04-Apr-2026', points: 86 },
       { title: '[LAB] Mentoring of Artem Belov', category: 'Education', date: '18-Feb-2026', points: 53 },
-      { title: '[UNI] University workshop on mobile QA', category: 'University Partnership', date: '25-Oct-2025', points: 30 },
       { title: '[LAB] Lecturing on Appium framework', category: 'Education', date: '12-Jun-2025', points: 61 },
       { title: '[REG] Internal training on visual testing', category: 'Public Speaking', date: '08-Mar-2025', points: 72 },
     ],
@@ -243,13 +228,10 @@ const users: User[] = [
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10017.jpg',
     activities: [
       { title: '[LAB] Mentoring of Olga Smirnova', category: 'Education', date: '15-Apr-2026', points: 68 },
-      { title: '[REG] DevConf keynote speaker', category: 'Public Speaking', date: '22-Feb-2026', points: 97 },
       { title: '[UNI] Guest lecture on distributed systems', category: 'University Partnership', date: '14-Nov-2025', points: 35 },
       { title: '[LAB] Curating Java advanced lab', category: 'Education', date: '30-Aug-2025', points: 59 },
-      { title: '[REG] Internal training on DDD', category: 'Public Speaking', date: '16-May-2025', points: 81 },
       { title: '[UNI] Academic practice curator', category: 'University Partnership', date: '03-Mar-2025', points: 26 },
       { title: '[LAB] Mentoring of Denis Kovalchuk', category: 'Education', date: '18-Jan-2025', points: 52 },
-      { title: '[REG] Regional architecture meetup', category: 'Public Speaking', date: '05-Feb-2025', points: 74 },
     ],
   },
   {
@@ -298,11 +280,9 @@ const users: User[] = [
     unit: 'EQ.U2.G3.T1',
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10021.jpg',
     activities: [
-      { title: '[REG] Engineering leadership summit', category: 'Public Speaking', date: '17-Mar-2026', points: 98 },
       { title: '[LAB] Mentoring of Alina Kovalenko', category: 'Education', date: '03-Feb-2026', points: 45 },
       { title: '[UNI] University partnership coordination', category: 'University Partnership', date: '20-Nov-2025', points: 38 },
       { title: '[LAB] Curating leadership workshop', category: 'Education', date: '07-Aug-2025', points: 54 },
-      { title: '[REG] Internal training on team management', category: 'Public Speaking', date: '24-May-2025', points: 69 },
     ],
   },
   {
@@ -357,8 +337,6 @@ const users: User[] = [
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10025.jpg',
     activities: [
       { title: '[LAB] Mentoring of Sergei Maltsev', category: 'Education', date: '14-Apr-2026', points: 49 },
-      { title: '[REG] Performance testing talk', category: 'Public Speaking', date: '02-Feb-2026', points: 81 },
-      { title: '[UNI] University lab assistant', category: 'University Partnership', date: '18-Nov-2025', points: 26 },
     ],
   },
   {
@@ -384,11 +362,8 @@ const users: User[] = [
     unit: 'EQ.U1.G3.T3',
     avatarUrl: 'https://thisponydoesnotexist.net/v1/w2x-redo/jpgs/seed10027.jpg',
     activities: [
-      { title: '[UNI] Guest lecture on databases', category: 'University Partnership', date: '07-Mar-2026', points: 33 },
       { title: '[LAB] Mentoring of Yana Belova', category: 'Education', date: '19-Jan-2026', points: 58 },
-      { title: '[REG] PostgreSQL meetup presentation', category: 'Public Speaking', date: '06-Oct-2025', points: 77 },
       { title: '[LAB] Curating SQL optimization lab', category: 'Education', date: '22-Jun-2025', points: 50 },
-      { title: '[REG] Internal talk on database indexing', category: 'Public Speaking', date: '09-Mar-2025', points: 66 },
     ],
   },
   {
@@ -400,7 +375,6 @@ const users: User[] = [
     activities: [
       { title: '[REG] Engineering culture conference', category: 'Public Speaking', date: '21-Mar-2026', points: 100 },
       { title: '[LAB] Mentoring of Nikita Volkov', category: 'Education', date: '08-Feb-2026', points: 55 },
-      { title: '[UNI] University advisory board member', category: 'University Partnership', date: '15-Nov-2025', points: 42 },
       { title: '[LAB] Curating new manager onboarding', category: 'Education', date: '02-Aug-2025', points: 60 },
     ],
   },
@@ -483,7 +457,25 @@ export function getActivityYears(): string[] {
 }
 
 export function getUsers(filters?: LeaderboardFilters): User[] {
-  let result = [...users]
+  let result = users.map((u) => {
+    let filtered = u.activities
+
+    if (filters?.year && filters.year !== 'All Years') {
+      const y = parseInt(filters.year, 10)
+      filtered = filtered.filter((a) => parseActivityDate(a.date).year === y)
+    }
+
+    if (filters?.quarter && filters.quarter !== 'All Quarters') {
+      const q = parseInt(filters.quarter.replace('Q', ''), 10)
+      filtered = filtered.filter((a) => getQuarter(parseActivityDate(a.date).month) === q)
+    }
+
+    if (filters?.category && filters.category !== 'All Categories') {
+      filtered = filtered.filter((a) => a.category === filters.category)
+    }
+
+    return { ...u, activities: filtered }
+  }).filter((u) => u.activities.length > 0)
 
   if (filters?.search) {
     const q = filters.search.toLowerCase()
@@ -492,26 +484,6 @@ export function getUsers(filters?: LeaderboardFilters): User[] {
         u.name.toLowerCase().includes(q) ||
         u.title.toLowerCase().includes(q) ||
         u.unit.toLowerCase().includes(q),
-    )
-  }
-
-  if (filters?.year && filters.year !== 'All Years') {
-    const y = parseInt(filters.year, 10)
-    result = result.filter((u) =>
-      u.activities.some((a) => parseActivityDate(a.date).year === y),
-    )
-  }
-
-  if (filters?.quarter && filters.quarter !== 'All Quarters') {
-    const q = parseInt(filters.quarter.replace('Q', ''), 10)
-    result = result.filter((u) =>
-      u.activities.some((a) => getQuarter(parseActivityDate(a.date).month) === q),
-    )
-  }
-
-  if (filters?.category && filters.category !== 'All Categories') {
-    result = result.filter((u) =>
-      u.activities.some((a) => a.category === filters.category),
     )
   }
 

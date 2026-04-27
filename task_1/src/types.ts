@@ -16,6 +16,14 @@ export interface User {
   activities: Activity[]
 }
 
+export interface PodiumUser extends User {
+  rank: number
+}
+
+export interface RankedUser extends User {
+  rank: number
+}
+
 export interface Category {
   name: string
   icon: Component

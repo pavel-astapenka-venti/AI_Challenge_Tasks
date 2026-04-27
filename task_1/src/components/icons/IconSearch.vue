@@ -1,7 +1,6 @@
 <template>
-  <svg :width="size" :height="size" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="8" />
-    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  <svg :width="size" :height="size" viewBox="0 0 2048 2048" fill="currentColor">
+    <path d="M1344 0q97 0 187 25t168 71 143 110 110 143 71 168 25 187q0 97-25 187t-71 168-110 143-143 110-168 71-187 25q-125 0-239-42t-211-121l-785 784q-19 19-45 19t-45-19-19-45q0-26 19-45l784-785q-79-96-121-210t-42-240q0-97 25-187t71-168 110-143T959 96t168-71T1344 0zm0 1280q119 0 224-45t183-124 123-183 46-224q0-119-45-224t-124-183-183-123-224-46q-119 0-224 45T937 297 814 480t-46 224q0 119 45 224t124 183 183 123 224 46z" />
   </svg>
 </template>
 

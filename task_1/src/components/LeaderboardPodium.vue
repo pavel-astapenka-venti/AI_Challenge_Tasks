@@ -1,210 +1,284 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { User } from '../types'
+import type { PodiumUser } from '../types'
 import IconStar from './icons/IconStar.vue'
 
 const props = defineProps<{
-  users: User[]
+  users: PodiumUser[]
 }>()
 
-function score(user: User): number {
+function score(user: PodiumUser): number {
   return user.activities.reduce((sum, a) => sum + a.points, 0)
 }
 
 const podiumOrder = computed(() => {
-  const [first, second, third] = props.users
-  return [second, first, third].filter(Boolean) as User[]
+  const sorted = [...props.users].sort((a, b) => {
+    const order = [2, 1, 3]
+    return order.indexOf(a.rank) - order.indexOf(b.rank)
+  })
+  return sorted
 })
-
-const rankMap: Record<number, number[]> = {
-  1: [1],
-  2: [2, 1],
-  3: [2, 1, 3],
-}
-
-const ranks = computed(() => rankMap[props.users.length] ?? [])
 </script>
 
 <template>
-  <div class="podium-section" v-if="podiumOrder.length">
-    <div class="podium-users">
-      <div
-        v-for="(user, idx) in podiumOrder"
-        :key="user.id"
-        class="podium-user"
-        :class="['place-' + ranks[idx]]"
-      >
-        <div class="avatar-wrapper" :class="'ring-' + ranks[idx]">
-          <img class="avatar" :src="user.avatarUrl" :alt="user.name" />
-          <span class="badge" :class="'badge-' + ranks[idx]">{{ ranks[idx] }}</span>
+  <div class="podium" v-if="podiumOrder.length">
+    <div
+      v-for="(user, idx) in podiumOrder"
+      :key="user.id"
+      class="podium-column"
+      :class="'podium-rank-' + user.rank"
+    >
+      <div class="podium-user">
+        <div class="podium-avatar-container">
+          <div
+            class="podium-avatar"
+            :style="{
+              backgroundImage: `url(${user.avatarUrl})`,
+              width: user.rank === 1 ? '112px' : '80px',
+              height: user.rank === 1 ? '112px' : '80px',
+            }"
+          ></div>
+          <div
+            class="podium-rank-badge"
+            :style="{
+              width: user.rank === 1 ? '40px' : '32px',
+              height: user.rank === 1 ? '40px' : '32px',
+            }"
+          >
+            {{ user.rank }}
+          </div>
         </div>
-        <span class="name">{{ user.name }}</span>
-        <span class="title">{{ user.title }} ({{ user.unit }})</span>
-        <span class="score">
+        <h3 class="podium-name">{{ user.name }}</h3>
+        <p class="podium-role">{{ user.title }} ({{ user.unit }})</p>
+        <div class="podium-score">
           <IconStar class="star-icon" />
-          {{ score(user) }}
-        </span>
+          <span>{{ score(user) }}</span>
+        </div>
       </div>
-    </div>
-    <div class="pedestals">
-      <div v-if="ranks.includes(2)" class="pedestal pedestal-2">2</div>
-      <div class="pedestal pedestal-1">1</div>
-      <div v-if="ranks.includes(3)" class="pedestal pedestal-3">3</div>
+      <div class="podium-block">
+        <div class="podium-block-top"></div>
+        <span class="podium-rank-number">{{ user.rank }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.podium-section {
-  background: var(--color-surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 3rem 2rem 0;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  overflow: hidden;
+.podium {
+  align-items: flex-end;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin: 0 auto 64px;
+  max-width: 900px;
+  padding: 32px 8px;
 }
 
-.podium-users {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: end;
-  gap: 1rem;
-  padding-bottom: 1.5rem;
+.podium-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
 }
 
+.podium-rank-1 { order: 2; margin-top: -32px; }
+.podium-rank-2 { order: 1; }
+.podium-rank-3 { order: 3; }
+
+/* User card above pedestal */
 .podium-user {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-}
-
-.place-1 {
-  order: 2;
-}
-.place-2 {
-  order: 1;
-}
-.place-3 {
-  order: 3;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 10;
 }
 
 /* Avatar */
-.avatar-wrapper {
+.podium-avatar-container {
+  margin-bottom: 12px;
   position: relative;
-  margin-bottom: 0.5rem;
 }
 
-.avatar {
+.podium-avatar {
   border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid transparent;
-}
-
-.ring-1 .avatar {
-  width: 100px;
-  height: 100px;
-  border-color: var(--color-badge-gold);
-}
-
-.ring-2 .avatar {
-  width: 72px;
-  height: 72px;
-  border-color: var(--color-badge-silver);
-}
-
-.ring-3 .avatar {
-  width: 72px;
-  height: 72px;
-  border-color: var(--color-badge-bronze);
-}
-
-/* Badge */
-.badge {
-  position: absolute;
-  bottom: -4px;
-  right: -4px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.podium-rank-1 .podium-avatar {
+  background-color: #86efac;
+  border: 4px solid #fbbf24;
+}
+
+.podium-rank-2 .podium-avatar {
+  background-color: #cbd5e1;
+  border: 4px solid #fff;
+}
+
+.podium-rank-3 .podium-avatar {
+  background-color: #5eead4;
+  border: 4px solid #fff;
+}
+
+/* Rank badge */
+.podium-rank-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -4px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  color: #fff;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.badge-1 {
+.podium-rank-1 .podium-rank-badge {
   background: var(--color-badge-gold);
+  font-size: 18px;
 }
-.badge-2 {
+
+.podium-rank-2 .podium-rank-badge {
   background: var(--color-badge-silver);
+  font-size: 14px;
 }
-.badge-3 {
+
+.podium-rank-3 .podium-rank-badge {
   background: var(--color-badge-bronze);
+  font-size: 14px;
 }
 
-/* Text */
-.name {
-  font-weight: 600;
-  font-size: 0.95rem;
+/* Name */
+.podium-name {
+  font-size: 20px;
+  font-weight: 700;
   color: var(--color-text-primary);
+  margin: 0 0 4px;
+  text-align: center;
 }
 
-.title {
-  font-size: 0.75rem;
+.podium-rank-1 .podium-name {
+  font-size: 24px;
+}
+
+/* Role */
+.podium-role {
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color-text-secondary);
+  margin: 0 0 8px;
 }
 
-.score {
-  display: inline-flex;
+/* Score pill */
+.podium-score {
+  display: flex;
   align-items: center;
-  gap: 0.25rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--color-star);
-  border: 1.5px solid var(--color-border);
-  border-radius: 999px;
-  padding: 0.15rem 0.75rem;
-  margin-top: 0.25rem;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 6px 16px;
+  color: var(--color-accent);
+}
+
+.podium-rank-1 .podium-score {
+  background: #fef9c3;
+  border-color: #fde047;
+  color: #ca8a04;
+  font-size: 20px;
+  padding: 8px 20px;
 }
 
 .star-icon {
-  width: 14px;
-  height: 14px;
+  color: inherit;
+  flex-shrink: 0;
 }
 
-/* Pedestals */
-.pedestals {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+.podium-score .star-icon {
+  width: 16px;
+  height: 16px;
 }
 
-.pedestal {
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+.podium-rank-1 .podium-score .star-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Pedestal blocks */
+.podium-block {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  padding-top: 16px;
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
-.pedestal-1 {
-  background: var(--color-gold);
-  height: 120px;
+.podium-rank-1 .podium-block {
+  background: linear-gradient(180deg, #fef3c7, #fde68a);
+  border-top: 2px solid #fde047;
+  height: 160px;
 }
 
-.pedestal-2 {
-  background: var(--color-silver);
-  height: 90px;
+.podium-rank-2 .podium-block {
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+  border-top: 2px solid #cbd5e1;
+  height: 128px;
 }
 
-.pedestal-3 {
-  background: var(--color-bronze);
-  height: 75px;
+.podium-rank-3 .podium-block {
+  background: linear-gradient(180deg, #e2e8f0, #cbd5e1);
+  border-top: 2px solid #cbd5e1;
+  height: 96px;
+}
+
+.podium-block-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.podium-rank-1 .podium-block-top {
+  background: #fde047;
+}
+
+.podium-rank-2 .podium-block-top,
+.podium-rank-3 .podium-block-top {
+  background: #cbd5e1;
+}
+
+.podium-rank-number {
+  font-size: 96px;
+  font-weight: 900;
+  color: rgba(148, 163, 184, 0.2);
+  user-select: none;
+  position: relative;
+}
+
+.podium-rank-1 .podium-rank-number {
+  color: rgba(234, 179, 8, 0.2);
+  font-size: 112px;
+}
+
+.podium-rank-3 .podium-rank-number {
+  top: -16px;
 }
 </style>
