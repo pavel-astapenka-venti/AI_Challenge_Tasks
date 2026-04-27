@@ -1,8 +1,0 @@
-@import './base.css';
-
-#app {
-  display: flex;
-  max-width: 1204px;
-  padding: 24px;
-  margin: 0 auto;
-}
