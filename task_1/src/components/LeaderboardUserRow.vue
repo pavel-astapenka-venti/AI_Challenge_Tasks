@@ -257,6 +257,8 @@ const categoryStats = computed(() =>
   background: #f8fafc;
   border-top: 1px solid var(--color-border);
   padding: 24px;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
 }
 
 .details-title {
