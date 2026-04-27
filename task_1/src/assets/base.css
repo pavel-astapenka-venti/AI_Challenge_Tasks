@@ -1,0 +1,42 @@
+:root {
+  --color-background: #eef1f5;
+  --color-surface: #ffffff;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #6b7280;
+  --color-accent: #3b82f6;
+  --color-border: #e2e6eb;
+  --color-star: #3b82f6;
+  --color-gold: #f5d76e;
+  --color-silver: #d5dbe3;
+  --color-bronze: #d5dbe3;
+  --color-badge-gold: #f59e0b;
+  --color-badge-silver: #6b7280;
+  --color-badge-bronze: #92400e;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-background);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
