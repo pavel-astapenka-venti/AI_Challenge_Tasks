@@ -1,0 +1,7 @@
+name,email,rsvp_status,check_in_time
+Bob Martinez,testhost2_tc@example.com,confirmed,
+Alice Chen,testuser_tc@example.com,confirmed,
+Carol Singh,checkin_user1@example.com,confirmed,2026-05-06T07:22:26.092Z
+David Kim,checkin_user2@example.com,confirmed,2026-05-06T07:22:37.071Z
+Emma Johnson,checkin_user3@example.com,confirmed,
+Frank Novak,checkin_user4@example.com,confirmed,
