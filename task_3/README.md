@@ -89,3 +89,8 @@ The bot is built as a single n8n workflow with the following components:
 - **Telegram Bot API** — user interface via Telegram
 - **Built-in n8n AI nodes** — GPT-powered Teacher and Examiner agents (no extra subscriptions needed)
 
+
+## For developers
+
+- Setup Telegram credentials
+- Setup variable 'bot_token' with token received from BotFather
